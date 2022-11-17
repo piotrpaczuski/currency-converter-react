@@ -1,10 +1,10 @@
 # Currency converter
 
 ## Description
-That simple currency converter is my second project that can calculate rate of various currencies.
+That simple currency converter allows you calculate rate of various currencies.
 
 ## Demo
-[Project](https://piotrpaczuski.github.io/currency-converter/)
+[Project](https://piotrpaczuski.github.io/currency-converter-react/)
 
 <img src="public/share.png" alt="background" width="400px">
 
@@ -12,8 +12,9 @@ That simple currency converter is my second project that can calculate rate of v
 - HTML
 - CSS
 - BEM convention
-<!-- - Javascript
-- ES6+ features -->
+<!-- - Javascript -->
+- React.js
+<!-- - ES6+ features -->
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
