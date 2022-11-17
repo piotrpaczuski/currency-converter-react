@@ -1,0 +1,10 @@
+.form {
+    margin: 0 15px;
+}
+
+.form__paragraph {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 40px;
+}
