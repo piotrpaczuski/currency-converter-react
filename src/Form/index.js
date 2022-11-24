@@ -13,37 +13,45 @@ const Form = () => {
     const [valueElement, setValueElement] = useState(" N/A");
     const [valueCurrency, setValueCurrency] = useState("");
 
-    // const onChangeCurrency = () => {
-    //     switch (inputCurrency) {
-    //         case "PLN":
-    //             switch (outputCurrency) {
-    //                 case "PLN":
-    //                     return setValuecurrentRate("Wybrałeś te same waluty!");
-    //                 case "EUR":
-    //                     return setValuecurrentRate("Obecny kurs wynosi: 0.21");
-    //                 case "USD":
-    //                     return setValuecurrentRate("Obecny kurs wynosi: 0.21");
-    //             }
-    //         case "EUR":
-    //             switch (outputCurrency) {
-    //                 case "PLN":
-    //                     return setValuecurrentRate("Obecny kurs wynosi: 4.77");
-    //                 case "EUR":
-    //                     return setValuecurrentRate("Wybrałeś te same waluty!");
-    //                 case "USD":
-    //                     return setValuecurrentRate("Obecny kurs wynosi: 0.98");
-    //             }
-    //         case "USD":
-    //             switch (outputCurrency) {
-    //                 case "PLN":
-    //                     return setValuecurrentRate("Obecny kurs wynosi: 4.88");
-    //                 case "EUR":
-    //                     return setValuecurrentRate("Obecny kurs wynosi: 1.02");
-    //                 case "USD":
-    //                     return setValuecurrentRate("Wybrałeś te same waluty!");
-    //             }
-    //     }
-    // }
+    const onChangeCurrency = () => {
+        switch (inputCurrency) {
+            case "PLN":
+                switch (outputCurrency) {
+                    case "PLN":
+                        return setValuecurrentRate("Wybrałeś te same waluty!");
+                    case "EUR":
+                        return setValuecurrentRate("Obecny kurs wynosi: 0.21");
+                    case "USD":
+                        return setValuecurrentRate("Obecny kurs wynosi: 0.21");
+                    default:
+                        return;
+                }
+            case "EUR":
+                switch (outputCurrency) {
+                    case "PLN":
+                        return setValuecurrentRate("Obecny kurs wynosi: 4.77");
+                    case "EUR":
+                        return setValuecurrentRate("Wybrałeś te same waluty!");
+                    case "USD":
+                        return setValuecurrentRate("Obecny kurs wynosi: 0.98");
+                    default:
+                        return;
+                }
+            case "USD":
+                switch (outputCurrency) {
+                    case "PLN":
+                        return setValuecurrentRate("Obecny kurs wynosi: 4.88");
+                    case "EUR":
+                        return setValuecurrentRate("Obecny kurs wynosi: 1.02");
+                    case "USD":
+                        return setValuecurrentRate("Wybrałeś te same waluty!");
+                    default:
+                        return;
+                }
+            default:
+                return;
+        }
+    }
 
     const calculateCurrency = (rate, value) => {
         setValueElement(" " + parseFloat(inputValue).toFixed(2) * rate)
@@ -52,7 +60,7 @@ const Form = () => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        
+
         switch (inputCurrency) {
             case "PLN":
                 switch (outputCurrency) {
@@ -112,7 +120,7 @@ const Form = () => {
                     selected={inputCurrency}
                     onChange={({ target }) => {
                         setInputCurrency(target.value);
-                        // onChangeCurrency();
+                        onChangeCurrency();
                     }}
                 />
                 <FormLabel
@@ -120,8 +128,8 @@ const Form = () => {
                     selected={outputCurrency}
                     onChange={({ target }) => {
                         setOutputCurrency(target.value);
-                        // onChangeCurrency();
-                        }
+                        onChangeCurrency();
+                    }
                     }
                 />
                 <FormInput
@@ -131,7 +139,7 @@ const Form = () => {
                     valueInput={valueCurrentRate}
                     isReadOnly={true}
                 />
-                <FormResult 
+                <FormResult
                     valueElement={valueElement}
                     valueCurrency={valueCurrency}
                 />
