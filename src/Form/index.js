@@ -13,10 +13,13 @@ const Form = () => {
     const [valueElement, setValueElement] = useState(" N/A");
     const [valueCurrency, setValueCurrency] = useState("");
 
-    const onChangeCurrency = () => {
-        switch (inputCurrency) {
+    const onChangeCurrency = (currencyFrom, currencyTo) => {
+        setInputCurrency(currencyFrom)
+        setOutputCurrency(currencyTo)
+
+        switch (currencyFrom) {
             case "PLN":
-                switch (outputCurrency) {
+                switch (currencyTo) {
                     case "PLN":
                         return setValuecurrentRate("Wybrałeś te same waluty!");
                     case "EUR":
@@ -27,7 +30,7 @@ const Form = () => {
                         return;
                 }
             case "EUR":
-                switch (outputCurrency) {
+                switch (currencyTo) {
                     case "PLN":
                         return setValuecurrentRate("Obecny kurs wynosi: 4.77");
                     case "EUR":
@@ -38,7 +41,7 @@ const Form = () => {
                         return;
                 }
             case "USD":
-                switch (outputCurrency) {
+                switch (currencyTo) {
                     case "PLN":
                         return setValuecurrentRate("Obecny kurs wynosi: 4.88");
                     case "EUR":
@@ -119,16 +122,14 @@ const Form = () => {
                     title={"Posiadania waluta: "}
                     selected={inputCurrency}
                     onChange={({ target }) => {
-                        setInputCurrency(target.value);
-                        onChangeCurrency();
+                        onChangeCurrency(target.value, outputCurrency);
                     }}
                 />
                 <FormLabel
                     title={"Wymagana waluta: "}
                     selected={outputCurrency}
                     onChange={({ target }) => {
-                        setOutputCurrency(target.value);
-                        onChangeCurrency();
+                        onChangeCurrency(inputCurrency, target.value);
                     }
                     }
                 />
