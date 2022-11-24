@@ -57,7 +57,7 @@ const Form = () => {
     }
 
     const calculateCurrency = (rate, value) => {
-        setValueElement(" " + parseFloat(inputValue).toFixed(2) * rate)
+        setValueElement(" " + (parseFloat(inputValue).toFixed(2) * rate).toFixed(2))
         setValueCurrency(value);
     }
 
