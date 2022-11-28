@@ -13,47 +13,38 @@ const Form = () => {
     const [valueElement, setValueElement] = useState(" N/A");
     const [valueCurrency, setValueCurrency] = useState("");
 
+    const xyz = {
+        currencyFrom: "",
+        currencyTo: "",
+        resultText: "",
+        setResultText(currencyFrom, currencyTo, resultText) {
+            if (currencyFrom === `${this.currencyFrom}` && currencyTo === `${this.currencyTo}`) {
+                setValuecurrentRate(resultText);
+            }
+        },
+        setResult(currencyFrom, currencyTo, rate, currency) {
+            if (currencyFrom === `${this.currencyFrom}` && currencyTo === `${this.currencyTo}`) {
+                calculateCurrency(rate, currency);
+            }
+        }
+    }
+
     const onChangeCurrency = (currencyFrom, currencyTo) => {
         setInputCurrency(currencyFrom)
         setOutputCurrency(currencyTo)
 
-        switch (currencyFrom) {
-            case "PLN":
-                switch (currencyTo) {
-                    case "PLN":
-                        return setValuecurrentRate("Wybrałeś te same waluty!");
-                    case "EUR":
-                        return setValuecurrentRate("Obecny kurs wynosi: 0.21");
-                    case "USD":
-                        return setValuecurrentRate("Obecny kurs wynosi: 0.21");
-                    default:
-                        return;
-                }
-            case "EUR":
-                switch (currencyTo) {
-                    case "PLN":
-                        return setValuecurrentRate("Obecny kurs wynosi: 4.77");
-                    case "EUR":
-                        return setValuecurrentRate("Wybrałeś te same waluty!");
-                    case "USD":
-                        return setValuecurrentRate("Obecny kurs wynosi: 0.98");
-                    default:
-                        return;
-                }
-            case "USD":
-                switch (currencyTo) {
-                    case "PLN":
-                        return setValuecurrentRate("Obecny kurs wynosi: 4.88");
-                    case "EUR":
-                        return setValuecurrentRate("Obecny kurs wynosi: 1.02");
-                    case "USD":
-                        return setValuecurrentRate("Wybrałeś te same waluty!");
-                    default:
-                        return;
-                }
-            default:
-                return;
-        }
+        xyz.currencyFrom = currencyFrom;
+        xyz.currencyTo = currencyTo;
+
+        xyz.setResultText("PLN", "PLN", "Wybrałeś te same waluty!")
+        xyz.setResultText("PLN", "EUR", "Obecny kurs wynosi: 0.21")
+        xyz.setResultText("PLN", "USD", "Obecny kurs wynosi: 0.21")
+        xyz.setResultText("EUR", "PLN", "Obecny kurs wynosi: 4.77")
+        xyz.setResultText("EUR", "EUR", "Wybrałeś te same waluty!")
+        xyz.setResultText("EUR", "USD", "Obecny kurs wynosi: 0.98")
+        xyz.setResultText("USD", "PLN", "Obecny kurs wynosi: 4.88")
+        xyz.setResultText("USD", "EUR", "Obecny kurs wynosi: 1.02")
+        xyz.setResultText("USD", "USD", "Wybrałeś te same waluty!")
     }
 
     const calculateCurrency = (rate, value) => {
@@ -64,43 +55,18 @@ const Form = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        switch (inputCurrency) {
-            case "PLN":
-                switch (outputCurrency) {
-                    case "PLN":
-                        return calculateCurrency(1, " PLN");
-                    case "EUR":
-                        return calculateCurrency(0.21, " EUR");
-                    case "USD":
-                        return calculateCurrency(0.21, " USD");
-                    default:
-                        return;
-                }
-            case "EUR":
-                switch (outputCurrency) {
-                    case "PLN":
-                        return calculateCurrency(4.77, " PLN");
-                    case "EUR":
-                        return calculateCurrency(1, " EUR");
-                    case "USD":
-                        return calculateCurrency(0.98, " USD");
-                    default:
-                        return;
-                }
-            case "USD":
-                switch (outputCurrency) {
-                    case "PLN":
-                        return calculateCurrency(4.88, " PLN");
-                    case "EUR":
-                        return calculateCurrency(1.02, " EUR");
-                    case "USD":
-                        return calculateCurrency(1, " USD");
-                    default:
-                        return;
-                }
-            default:
-                return;
-        }
+        xyz.currencyFrom = inputCurrency;
+        xyz.currencyTo = outputCurrency;
+
+        xyz.setResult("PLN", "PLN", 1, " PLN")
+        xyz.setResult("PLN", "EUR", 0.21, " EUR")
+        xyz.setResult("PLN", "USD", 0.21, " USD")
+        xyz.setResult("EUR", "PLN", 4.77, " PLN")
+        xyz.setResult("EUR", "EUR", 1, " EUR")
+        xyz.setResult("EUR", "USD", 0.98, " USD")
+        xyz.setResult("USD", "PLN", 4.88, " PLN")
+        xyz.setResult("USD", "EUR", 1.02, " EUR")
+        xyz.setResult("USD", "USD", 1, " USD")
     }
 
     return (
