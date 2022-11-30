@@ -80,9 +80,12 @@ const Form = () => {
                     numberOfStep={"0.01"}
                     isRequired={true}
                     valueInput={inputValue}
-                    onChange={({ target }) =>
-                        setInputValue(target.value)
-                    }
+                    onChange={({ target }) =>{
+                        if(!(target.value.charAt(0) === "-")) {
+                            setInputValue(target.value);
+                            console.log(inputValue);
+                        }
+                    }}
                 />
                 <FormLabel
                     title={"Posiadania waluta: "}
