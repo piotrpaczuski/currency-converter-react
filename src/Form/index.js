@@ -1,8 +1,8 @@
 import { useState } from "react";
-import FormFieldset from "./FormFieldset";
-import FormInput from "./FormInput";
-import FormLabel from "./FormLabel";
-import FormResult from "./FormResult";
+import FormFieldset from "./Fieldset";
+import FormInput from "./Input";
+import FormLabel from "./Label";
+import FormResult from "./Result";
 import "./style.css";
 
 const Form = () => {
