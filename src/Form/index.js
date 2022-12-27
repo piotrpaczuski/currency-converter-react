@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormFieldset from "./Fieldset";
 import FormInput from "./Input";
 import FormLabel from "./Label";
@@ -6,13 +6,33 @@ import FormResult from "./Result";
 import "./style.css";
 
 const Form = () => {
+
     const [inputValue, setInputValue] = useState("");
     const [inputCurrency, setInputCurrency] = useState("PLN");
     const [outputCurrency, setOutputCurrency] = useState("EUR");
     const [valueCurrentRate, setValueCurrentRate] = useState("Obecny kurs wynosi: 0.21")
     const [valueElement, setValueElement] = useState(" N/A");
     const [valueCurrency, setValueCurrency] = useState("");
+    const [actuallyDate, setActuallyDate] = useState({time: "",})
+    
+    useEffect(() => {
+        setInterval(() => {
+            let date = new Date().toLocaleDateString(
+                undefined,
+                {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    hour: "numeric",
+                    minute: "numeric",
+                    second: "numeric"
+                }
+            );
 
+            setActuallyDate({time: date})
+        }, 1000)
+    });
+    
     const setResults = {
         currencyFrom: "",
         currencyTo: "",
@@ -26,7 +46,7 @@ const Form = () => {
             if (currencyFrom === `${this.currencyFrom}` && currencyTo === `${this.currencyTo}`) {
                 calculateCurrency(rate, currency);
             }
-        }
+        },
     }
 
     const onChangeCurrency = (currencyFrom, currencyTo) => {
@@ -73,6 +93,7 @@ const Form = () => {
         <form className="form" onSubmit={onFormSubmit}>
             <p className="form__paragraph">Kalkulator walut</p>
             <FormFieldset>
+                <p className="form__time">Dzisiaj jest {actuallyDate.time}</p>
                 <FormInput
                     title={"Posiadana kwota: "}
                     classes={"form__input"}
@@ -80,8 +101,8 @@ const Form = () => {
                     numberOfStep={"0.01"}
                     isRequired={true}
                     valueInput={inputValue}
-                    onChange={({ target }) =>{
-                        if(!(target.value.charAt(0) === "-")) {
+                    onChange={({ target }) => {
+                        if (!(target.value.charAt(0) === "-")) {
                             setInputValue(target.value);
                             console.log(inputValue);
                         }
