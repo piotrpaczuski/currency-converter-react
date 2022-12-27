@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormFieldset from "./Fieldset";
 import FormInput from "./Input";
 import FormLabel from "./Label";
 import FormResult from "./Result";
+import ActuallyDate from "./Clock";
 import "./style.css";
 
 const Form = () => {
@@ -13,41 +14,6 @@ const Form = () => {
     const [valueCurrentRate, setValueCurrentRate] = useState("Obecny kurs wynosi: 0.21")
     const [valueElement, setValueElement] = useState(" N/A");
     const [valueCurrency, setValueCurrency] = useState("");
-    const [actuallyDate, setActuallyDate] = useState({
-        time: new Date().toLocaleDateString(
-            undefined,
-            {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                hour: "numeric",
-                minute: "numeric",
-                second: "numeric"
-            }
-        )
-    });
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            let date = new Date().toLocaleDateString(
-                undefined,
-                {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    hour: "numeric",
-                    minute: "numeric",
-                    second: "numeric"
-                }
-            );
-
-            setActuallyDate({ time: date });
-        }, 1000);
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
 
     const setResults = {
         currencyFrom: "",
@@ -109,7 +75,7 @@ const Form = () => {
         <form className="form" onSubmit={onFormSubmit}>
             <p className="form__paragraph">Kalkulator walut</p>
             <FormFieldset>
-                <p className="form__date">Dzisiaj jest {actuallyDate.time}</p>
+                <ActuallyDate />
                 <FormInput
                     title={"Posiadana kwota: "}
                     classes={"form__input"}
