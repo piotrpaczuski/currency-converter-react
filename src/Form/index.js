@@ -13,10 +13,22 @@ const Form = () => {
     const [valueCurrentRate, setValueCurrentRate] = useState("Obecny kurs wynosi: 0.21")
     const [valueElement, setValueElement] = useState(" N/A");
     const [valueCurrency, setValueCurrency] = useState("");
-    const [actuallyDate, setActuallyDate] = useState({time: "",})
-    
+    const [actuallyDate, setActuallyDate] = useState({
+        time: new Date().toLocaleDateString(
+            undefined,
+            {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric"
+            }
+        )
+    });
+
     useEffect(() => {
-        setInterval(() => {
+        const intervalId = setInterval(() => {
             let date = new Date().toLocaleDateString(
                 undefined,
                 {
@@ -29,10 +41,14 @@ const Form = () => {
                 }
             );
 
-            setActuallyDate({time: date})
-        }, 1000)
-    });
-    
+            setActuallyDate({ time: date })
+        }, 1000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
     const setResults = {
         currencyFrom: "",
         currencyTo: "",
@@ -47,7 +63,7 @@ const Form = () => {
                 calculateCurrency(rate, currency);
             }
         },
-    }
+    };
 
     const onChangeCurrency = (currencyFrom, currencyTo) => {
         setInputCurrency(currencyFrom)
@@ -65,12 +81,12 @@ const Form = () => {
         setResults.setCurrentRate("USD", "PLN", "Obecny kurs wynosi: 4.88")
         setResults.setCurrentRate("USD", "EUR", "Obecny kurs wynosi: 1.02")
         setResults.setCurrentRate("USD", "USD", "Wybrałeś te same waluty!")
-    }
+    };
 
     const calculateCurrency = (rate, value) => {
         setValueElement(" " + (parseFloat(inputValue).toFixed(2) * rate).toFixed(2))
         setValueCurrency(value);
-    }
+    };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
@@ -87,13 +103,13 @@ const Form = () => {
         setResults.setResult("USD", "PLN", 4.88, " PLN")
         setResults.setResult("USD", "EUR", 1.02, " EUR")
         setResults.setResult("USD", "USD", 1, " USD")
-    }
+    };
 
     return (
         <form className="form" onSubmit={onFormSubmit}>
             <p className="form__paragraph">Kalkulator walut</p>
             <FormFieldset>
-                <p className="form__time">Dzisiaj jest {actuallyDate.time}</p>
+                <p className="form__date">Dzisiaj jest {actuallyDate.time}</p>
                 <FormInput
                     title={"Posiadana kwota: "}
                     classes={"form__input"}
@@ -105,7 +121,7 @@ const Form = () => {
                         if (!(target.value.charAt(0) === "-")) {
                             setInputValue(target.value);
                             console.log(inputValue);
-                        }
+                        };
                     }}
                 />
                 <FormLabel
