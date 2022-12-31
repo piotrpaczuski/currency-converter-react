@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { StyledDate } from "./styled";
 
-const ActuallyDate = () => {
-
+const useCurrentDate = () => {
     const [actuallyDate, setActuallyDate] = useState(new Date());
 
     useEffect(() => {
@@ -27,9 +25,7 @@ const ActuallyDate = () => {
         }
     );
 
-    return (
-        <StyledDate>Dzisiaj jest {formattedDate}</StyledDate>
-    )
-}
+    return formattedDate;
+};
 
-export default ActuallyDate;
+export default useCurrentDate;

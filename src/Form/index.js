@@ -4,7 +4,7 @@ import FormFieldset from "./Fieldset";
 import FormInput from "./Input";
 import FormLabel from "./Label";
 import FormResult from "./Result";
-import ActuallyDate from "./Clock";
+import ActuallyDate from "../Clock";
 
 const Form = () => {
 
