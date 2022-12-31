@@ -1,23 +1,16 @@
-.form__labelText {
+import styled from "styled-components";
+
+export const StyledLabelText = styled.span`
     width: 150px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-}
+`;
 
-.form__input {
+export const StyledInput = styled.select`
     border-radius: 5px;
     padding: 10px;
     border-color: grey;
     max-width: 400px;
     width: 100%;
-}
-
-.form__input--noneBorder {
-    border: none;
-}
-
-.form__input--noneBorder:focus-visible {
-    outline: none;
-    
-}
+`;

@@ -1,17 +1,18 @@
-import "./style.css";
+import { StyledLabelText, StyledInput } from "./styled";
 
-const FormInput = ({ title, classes, typeValue, valueInput, numberOfStep, isRequired, isReadOnly, onChange }) => (
+const FormInput = ({ title, typeValue, valueInput, numberOfStep, isRequired, isReadOnly, onChange }) => (
     <p>
         <label>
-            <span className="form__labelText">{title}</span>
-            <input
+            <StyledLabelText>{title}</StyledLabelText>
+            <StyledInput
                 onChange={onChange}
-                className={classes}
                 type={typeValue}
                 value={valueInput}
                 step={numberOfStep}
                 required={isRequired}
-                readOnly={isReadOnly} />
+                readOnly={isReadOnly}
+                noneBorder={isReadOnly}
+            />
         </label>
     </p>
 )

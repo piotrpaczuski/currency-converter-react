@@ -1,10 +1,10 @@
-import "./style.css";
+import { StyledFieldset, StyledLegend } from "./styled";
 
 const FormFieldset = ({children}) => (
-    <fieldset className="form__fieldset">
-        <legend className="form__legend">Uzupełnij dane</legend>
+    <StyledFieldset>
+        <StyledLegend>Uzupełnij dane</StyledLegend>
         {children}
-    </fieldset>
+    </StyledFieldset>
 );
 
 export default FormFieldset;

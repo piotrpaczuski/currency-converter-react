@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./style.css";
+import { StyledDate } from "./styled";
 
 const ActuallyDate = () => {
 
@@ -28,7 +28,7 @@ const ActuallyDate = () => {
     );
 
     return (
-        <p className="form__date">Dzisiaj jest {formattedDate}</p>
+        <StyledDate>Dzisiaj jest {formattedDate}</StyledDate>
     )
 }
 

@@ -1,16 +1,23 @@
-import "./style.css";
+// import "./style.css";
+import { StyledButton, StyledResult, StyledSpan, StyledNote } from "./styled";
 
 const FormResult = ({ valueElement, valueCurrency }) => (
     <>
         <p>
-            <button className="form__button">Oblicz</button>
+            <StyledButton>Oblicz</StyledButton>
         </p>
-        <p className="form__result">
+        <StyledResult>
             Przeliczona kwota wynosi:
-            <span className="form__span section__span">{valueElement}</span>
-            <span>{valueCurrency}</span>
-        </p>
-        <p className="form__note">*Wyświetlany kurs jest z dnia 20.10.2022</p>
+            <StyledSpan>
+                {valueElement}
+            </StyledSpan>
+            <span>
+                {valueCurrency}
+            </span>
+        </StyledResult>
+        <StyledNote>
+            *Wyświetlany kurs jest z dnia 20.10.2022
+        </StyledNote>
     </>
 );
 

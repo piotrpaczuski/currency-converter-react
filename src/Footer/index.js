@@ -1,9 +1,9 @@
-import "./style.css"
+import { StyledFooter } from "./styled";
 
 const Footer = () => (
-    <footer className="footer">
+    <StyledFooter>
         &copy; Copyright 2022 Wszelkie prawa zastrzeżone.
-    </footer>
+    </StyledFooter>
 )
 
 export default Footer;

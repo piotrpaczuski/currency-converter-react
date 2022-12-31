@@ -1,10 +1,10 @@
+import { StyledForm, StyledParagraph } from "./styled";
 import { useState } from "react";
 import FormFieldset from "./Fieldset";
 import FormInput from "./Input";
 import FormLabel from "./Label";
 import FormResult from "./Result";
 import ActuallyDate from "./Clock";
-import "./style.css";
 
 const Form = () => {
 
@@ -72,13 +72,12 @@ const Form = () => {
     };
 
     return (
-        <form className="form" onSubmit={onFormSubmit}>
-            <p className="form__paragraph">Kalkulator walut</p>
+        <StyledForm onSubmit={onFormSubmit}>
+            <StyledParagraph>Kalkulator walut</StyledParagraph>
             <FormFieldset>
                 <ActuallyDate />
                 <FormInput
                     title={"Posiadana kwota: "}
-                    classes={"form__input"}
                     typeValue={"number"}
                     numberOfStep={"0.01"}
                     isRequired={true}
@@ -107,7 +106,6 @@ const Form = () => {
                 />
                 <FormInput
                     title={"Obecny kurs:* "}
-                    classes={"form__input form__input--noneBorder"}
                     typeValue={"text"}
                     valueInput={valueCurrentRate}
                     isReadOnly={true}
@@ -117,7 +115,7 @@ const Form = () => {
                     valueCurrency={valueCurrency}
                 />
             </FormFieldset>
-        </form>
+        </StyledForm>
     )
 }
 
