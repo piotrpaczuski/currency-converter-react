@@ -4,7 +4,7 @@ import FormFieldset from "./Fieldset";
 import FormInput from "./Input";
 import FormLabel from "./Label";
 import FormResult from "./Result";
-import ActuallyDate from "../Clock";
+import Clock from "../Clock";
 
 const Form = () => {
 
@@ -75,7 +75,7 @@ const Form = () => {
         <StyledForm onSubmit={onFormSubmit}>
             <StyledParagraph>Kalkulator walut</StyledParagraph>
             <FormFieldset>
-                <ActuallyDate />
+                <Clock />
                 <FormInput
                     title={"Posiadana kwota: "}
                     typeValue={"number"}
